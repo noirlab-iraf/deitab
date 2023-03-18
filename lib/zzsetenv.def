@@ -1,0 +1,10 @@
+# Global environment definitions for the packages.
+
+set deibin	= "deitab$bin(arch)/"
+set deisrc	= "deitab$src/"
+set deilib	= "deitab$lib/"
+set deidoc	= "deitab$doc/"
+
+set pkglibs	= "deibin$,tables$bin(arch)/,tables$lib/"
+
+keep

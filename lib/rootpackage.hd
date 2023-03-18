@@ -1,0 +1,8 @@
+# Root task entry for the package help tree.  Defines `<package>'
+# as both a task and a package in the help database.
+
+deitab		men  = deitab$deitab.men,
+		hlp  = deitab$deitab.men,
+		sys  = deitab$sys.hlp,
+		pkg  = deitab$deitab.hd,
+		src  = deitab$deitab.cl

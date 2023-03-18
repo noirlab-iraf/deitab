@@ -1,0 +1,10 @@
+# Help directory.
+
+$doc		= "./doc/"
+$src		= "./src/"
+
+revisions	sys=src$Revisions
+
+txndimage	hlp=doc$txndimage.hlp,	src=src$t_txndimage.x
+
+

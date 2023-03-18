@@ -1,0 +1,6 @@
+		DEIMOS -- Utility package for DEIMOS data
+
+       dcdeimos - dispersion correct extracted DEIMOS spectra
+       txdeimos - convert DEIMOS tables to images
+
+      txndimage - convert table array elements to images

@@ -1,0 +1,7 @@
+# Help definitions for the package.
+
+deitab		men = deitab.men,
+		hlp = ..,
+		sys = sys.hlp,
+		pkg = deitab.hd,
+		src = deitab.cl

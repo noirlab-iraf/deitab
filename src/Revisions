@@ -1,0 +1,37 @@
+.help revisions Jul03 deitab
+.nf
+=====
+V1.1
+=====
+
+txdeimos.cl
+    Adds CTYPE1=Angstroms to the headers.  (7/30/03, Valdes)
+
+t_txndimage.x
+    Added a routine to copy the table header keywords to the image header
+    excluding table specific keywords.  (7/25/03, Valdes)
+
+=====
+V1.0
+=====
+
+dcdeimos.cl		+
+t_txndimage.x		+
+txdeimos.cl		+
+txndimage.par		+
+whatfile.h		+
+x_deitab.x		+
+mkpkg			+
+	Initial set of three tasks.  (7/11/03, Valdes)
+
+../deitab.cl		+
+../deitab.hd		+
+../deitab.men		+
+../deitab.par		+
+../doc			+
+../lib			+
+../mkpkg		+
+../src			+
+	New package created.  (7/11/03, Valdes)
+
+.endhelp

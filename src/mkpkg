@@ -1,0 +1,21 @@
+$call	relink
+$exit
+
+update:
+	$call	relink
+	$call	install
+	;
+
+relink:
+	$update	libpkg.a
+	$omake	x_deitab.x
+	$link	x_deitab.o libpkg.a -lxtools -ltbtables -o xx_deitab.e
+	;
+
+install:
+	$move	xx_deitab.e deibin$x_deitab.e
+	;
+
+libpkg.a:
+	t_txndimage.x	<error.h> <imhdr.h> <tbset.h> whatfile.h
+	;

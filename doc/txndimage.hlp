@@ -1,0 +1,105 @@
+.help txndimage Jul03 deitab
+.ih
+NAME
+txndimage -- Extract images from cells of a 3-D table.
+.ih
+USAGE
+txndimage intable output
+.ih
+PARAMETERS
+.ls intable
+List of one or more tables to be expanded.  For FITS binary tables an
+extension number of name is required.  A column selector selecting
+a single column is also required.  Row selectors are supported as well.
+.le
+.ls output
+Either a directory name or a list of output image names.
+.le
+.ls verbose = yes
+Display names of input and output files ?
+.le
+.ih
+DESCRIPTION
+This task extracts one or more images from cells of a 3-D table.  This task
+is a minor variation on tables.ttools.tximage in that the dimensionality
+of the table array is used to define the dimensionality of the image.
+It also copies non-tables specific header keywords to the image header.
+
+The input may be a filename template, including wildcard characters, 
+or the name of a file (preceded by an @ sign) containing table names. 
+For FITS binary tables the extension ".fits" and the table extension number
+or name must be specified.
+
+The output may be either a directory specification or a list of image names. 
+If the output is a list of images then there must be the same number of names 
+in the input and output lists, and the names are taken in pairs, one from 
+input and one from output.
+
+Images can be extracted only from a single column in the input table.
+That column must be designated by an appropriate column selector appended to 
+the table name. Type 'help selectors' to get more information on row/column 
+selector syntax.
+
+Row selectors may be used to select subsets of rows from the input table.
+If no row selector is used, all rows will be extracted, and the number
+of output images will be the number of rows in the input table.
+
+Since one input table may generate several output images, the task adopts
+the following naming scheme for these output images: their names are
+built by appending a suffix to the name given in parameter "output".
+The suffix has the form "_rXXXX", where XXXX stands for the row number 
+in the input table. The suffix is appended before the file name extension.
+The task recognizes as valid image name extensions the values ".??h",
+".fits" and ".fit". Any other extension is assumed to be part of the root
+file name. If only one row is extracted, no suffixing takes place.
+
+NOTE: Be careful when using a wildcard for the extension.
+If you have the files "table.tab" and "table.lis" in the current directory,
+for example, then the command "tximage tab* test/" would expand both files 
+to the subdirectory "test".
+
+Basic column information describing the column where the image came from
+is written into the image header in the "COLDATA" keyword.
+
+The input row number is written to the header of the output image in
+keyword ORIG_ROW.
+.ih
+EXAMPLES
+1. Extract 2-D image from a column named FLUX in the first extensions of
+a FITS binary table which has only one row.
+
+.fi
+    cl> tlcol deimos.fits
+    # deimos.fits[1]
+    FLUX             R[4096,232]   %15.7g ""              
+    IVAR             R[4096,232]   %15.7g ""              
+    MASK             S[4096,232]     %11d ""              
+    CRMASK           S[4096,232]     %11d ""              
+    LAMBDA0          R[4096]    %15.7g ""              
+    DLAMBDA          R[4096,232]   %15.7g ""              
+    LAMBDAX          D[6]      %25.16g ""              
+    TILTX            D[3]      %25.16g ""              
+    SLITFN           R[232]     %15.7g ""              
+    DLAM             R[232]     %15.7g ""              
+    INFOMASK         I[4096,232]     %11d ""              
+
+    cl> txndimage "deimos.fits[1][c:FLUX]" deiimage
+    cl> imhead deiimage l-
+    deiimage[4096,232][real]:
+.fi
+
+2. Extract 1-D images from a column named FLUX from rows 11 to 13 of a 3-D 
+table:
+
+.nf
+cl> txndimage "table.tab[c:FLUX][r:row=(11:13)]" image
+.fi
+
+This will generate three images named "image_r0011", "image_r0012"
+and "image_r0013".
+.ih
+BUGS
+.ih
+SEE ALSO
+tables.ttools: tximage, tiimage, selectors
+.endhelp
